@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript Function Programs</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+    }
+
+    .output {
+      background-color: #ffffff;
+      border-left: 6px solid #2980b9;
+      margin: 20px 0;
+      padding: 15px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .output h2 {
+      color: #2980b9;
+      margin-bottom: 10px;
+    }
+
+    .output p {
+      color: #333333;
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <h1>JavaScript Function Programs Output</h1>
+  <div id="results"></div>
+
+  <script>
+    // Helper to print output using DOM
+    function printOutput(title, content) {
+      const resultsDiv = document.getElementById("results");
+      const section = document.createElement("div");
+      section.className = "output";
+      section.innerHTML = `<h2>${title}</h2><p>${content}</p>`;
+      resultsDiv.appendChild(section);
+    }
+
+    // 1. Function to filter out negative numbers
+    function filterNegativeNumbers(arr) {
+      const result = arr.filter(num => num >= 0);
+      printOutput("1. Filter Non-Negative Numbers", result.join(", "));
+    }
+
+    // 2. Difference with 13 or double absolute difference if greater
+    function diffWith13(num) {
+      let result;
+      if (num > 13) {
+        result = 2 * Math.abs(num - 13);
+      } else {
+        result = 13 - num;
+      }
+      printOutput(`2. Difference with 13 (Input: ${num})`, result);
+    }
+
+    // 3. Fibonacci series up to n terms
+    function fibonacciSeries(n) {
+      let fib = [0, 1];
+      for (let i = 2; i < n; i++) {
+        fib[i] = fib[i - 1] + fib[i - 2];
+      }
+      printOutput(`3. Fibonacci Series (${n} Terms)`, fib.slice(0, n).join(", "));
+    }
+
+    // 4. Sum of multiples of 3 and 5 below a limit
+    function sumMultiplesOf3And5(limit) {
+      let sum = 0;
+      for (let i = 1; i < limit; i++) {
+        if (i % 3 === 0 || i % 5 === 0) {
+          sum += i;
+        }
+      }
+      printOutput(`4. Sum of Multiples of 3 and 5 (Below ${limit})`, sum);
+    }
+
+    // 5. Cube using Function object
+    const cube = new Function("n", "return n * n * n;");
+    function showCubeResults() {
+      const nums = [3, 5];
+      let content = nums.map(n => `Cube of ${n} = ${cube(n)}`).join("<br>");
+      printOutput("5. Cube Using Function Object", content);
+    }
+
+    // Run all functions with sample inputs
+    filterNegativeNumbers([-5, 3, -2, 7, 0, -8, 4]);
+    diffWith13(20);
+    diffWith13(8);
+    fibonacciSeries(10);
+    sumMultiplesOf3And5(1000);
+    showCubeResults();
+  </script>
+</body>
+</html>
